@@ -1,2 +1,2 @@
-# LunaBot
+# CinnamonBot
 bot for CinnamonBuns
