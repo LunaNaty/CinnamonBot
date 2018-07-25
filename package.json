@@ -6,6 +6,9 @@
   "repository": "https://github.com/KingCosmic/CinnamonBot.git",
   "author": "Austyn Studdard <KingCosmic2016@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "engines": { "node": "8.4.0" },
   "dependencies": {
     "chalk": "^2.4.1",
