@@ -11,7 +11,7 @@ module.exports = (client, member) => {
   // Replace the placeholders in the welcome message with actual data
   const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member.user.tag);
 
-  const embed = {
+  const guildEmbed = {
     "title": welcomeMessage,
     "color": 16663691,
     "timestamp": new Date().toISOString(),
@@ -25,5 +25,23 @@ module.exports = (client, member) => {
 
   // Send the welcome message to the welcome channel
   // There's a place for more configs here.
-  member.guild.channels.find("name", settings.welcomeChannel).send({ embed }).catch(console.error);
+  member.guild.channels.find("name", settings.welcomeChannel).send({ embed: guildEmbed })
+  .then(() => {
+
+    const dmEmbed = {
+      "title": "Welcome {{user}}! Welcome to cinnamonBuns!".replace("{{user}}", member.user.tag),
+      "description": "Here's a spare link so if you accidentally leave you can easily join back or if you want to invite a friend! \n\n https://discord.gg/q55yXMe \n\n If you invite a friend you can aquire the Supporter role, this gives you access to the premium self assignable roles!",
+      "color": 12011097,
+      "timestamp": "2018-07-25T18:14:20.238Z",
+      "image": {
+        "url": "https://cdn.discordapp.com/attachments/471600179662028802/471744950321807370/Discord_Rules_Banner.png"
+      },
+      "footer": {
+        "text": "Hope you enjoy your stay :3"
+      }
+    };
+
+    member.send({ embed: dmEmbed });
+  })
+  .catch(console.error);
 };
