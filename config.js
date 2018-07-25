@@ -20,7 +20,7 @@ const config = {
   permLevels: [
     // This is the lowest permisison level, this is for non-roled users.
     {
-      level: 0,
+      level: 1,
       name: "User", 
       // Don't bother checking, just return true which allows them to execute any command their
       // level allows them to.
@@ -45,8 +45,17 @@ const config = {
       }
     },
 
+    // This is the server owner.
     {
       level: 3,
+      name: "Bot Dev", 
+      // Simple check, if the guild owner id matches the message author's ID, then it will return true.
+      // Otherwise it will return false.
+      check: (message) => message.author.id === config.devId
+    },
+
+    {
+      level: 4,
       // This is the name of the role.
       name: "Trial Mod",
       // The following lines check the guild the message came from for the roles.
@@ -65,7 +74,7 @@ const config = {
 
     // This is your permission level, the staff levels should always be above the rest of the roles.
     {
-      level: 4,
+      level: 5,
       // This is the name of the role.
       name: "Mod",
       // The following lines check the guild the message came from for the roles.
@@ -80,15 +89,6 @@ const config = {
           return false;
         }
       }
-    },
-
-    // This is the server owner.
-    {
-      level: 5,
-      name: "Bot Dev", 
-      // Simple check, if the guild owner id matches the message author's ID, then it will return true.
-      // Otherwise it will return false.
-      check: (message) => message.author.id === config.devId
     },
 
     {
