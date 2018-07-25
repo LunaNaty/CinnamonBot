@@ -10,7 +10,9 @@ const config = {
     welcomeChannel: 'mainhall',
     welcomeMessage: 'Hello {{user}}! Welcome to CinnamonBuns!',
     modRole: 'Staff',
-    adminRole: 'Co owner'
+    trialMod: 'Trial Staff',
+    adminRole: 'Co owner',
+    supporterRole: 'Supporter',
   },
 
   // PERMISSION LEVEL DEFINITIONS.
@@ -25,9 +27,45 @@ const config = {
       check: () => true
     },
 
-    // This is your permission level, the staff levels should always be above the rest of the roles.
     {
       level: 2,
+      // This is the name of the role.
+      name: "Supporter",
+      // The following lines check the guild the message came from for the roles.
+      // Then it checks if the member that authored the message has the role.
+      // If they do return true, which will allow them to execute the command in question.
+      // If they don't then return false, which will prevent them from executing the command.
+      check: (message) => {
+        try {
+          const modRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.supporterRole.toLowerCase());
+          if (modRole && message.member.roles.has(modRole.id)) return true;
+        } catch (e) {
+          return false;
+        }
+      }
+    },
+
+    {
+      level: 3,
+      // This is the name of the role.
+      name: "Trial Mod",
+      // The following lines check the guild the message came from for the roles.
+      // Then it checks if the member that authored the message has the role.
+      // If they do return true, which will allow them to execute the command in question.
+      // If they don't then return false, which will prevent them from executing the command.
+      check: (message) => {
+        try {
+          const modRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.trialMod.toLowerCase());
+          if (modRole && message.member.roles.has(modRole.id)) return true;
+        } catch (e) {
+          return false;
+        }
+      }
+    },
+
+    // This is your permission level, the staff levels should always be above the rest of the roles.
+    {
+      level: 4,
       // This is the name of the role.
       name: "Mod",
       // The following lines check the guild the message came from for the roles.
@@ -44,8 +82,17 @@ const config = {
       }
     },
 
+    // This is the server owner.
     {
-      level: 3,
+      level: 5,
+      name: "Bot Dev", 
+      // Simple check, if the guild owner id matches the message author's ID, then it will return true.
+      // Otherwise it will return false.
+      check: (message) => message.author.id === config.devId
+    },
+
+    {
+      level: 6,
       name: "Admin", 
       check: (message) => {
         try {
@@ -59,16 +106,7 @@ const config = {
 
     // This is the server owner.
     {
-      level: 4,
-      name: "Bot Dev", 
-      // Simple check, if the guild owner id matches the message author's ID, then it will return true.
-      // Otherwise it will return false.
-      check: (message) => message.author.id === config.devId
-    },
-
-    // This is the server owner.
-    {
-      level: 5,
+      level: 7,
       name: "Server Owner", 
       // Simple check, if the guild owner id matches the message author's ID, then it will return true.
       // Otherwise it will return false.
