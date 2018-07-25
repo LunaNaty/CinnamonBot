@@ -14,7 +14,7 @@ module.exports = (client, member) => {
   const embed = {
     "title": welcomeMessage,
     "color": 16663691,
-    "timestamp": Date.now().toISOString(),
+    "timestamp": new Date().toISOString(),
     "footer": {
       "text": "Enjoy your stay :3"
     },
