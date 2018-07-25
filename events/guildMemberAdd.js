@@ -22,9 +22,8 @@ module.exports = (client, member) => {
       "url": "https://cdn.discordapp.com/attachments/471600179662028802/471615977101197322/9c0b6c1a89547a4e53964a5e865ad5b3-700.jpg"
     }
   };
-  channel.send({ embed });
 
   // Send the welcome message to the welcome channel
   // There's a place for more configs here.
-  member.guild.channels.find("name", settings.welcomeChannel).send(welcomeMessage).catch(console.error);
+  member.guild.channels.find("name", settings.welcomeChannel).send({ embed }).catch(console.error);
 };
