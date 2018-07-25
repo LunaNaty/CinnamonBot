@@ -10,7 +10,9 @@ module.exports = (client, message) => {
 
   // Grab the settings for this server from Enmap.
   // If there is no guild, get default conf (DMs)
-  const settings = message.settings = client.config.settings;
+  const settings = client.config.settings;
+
+  message.settings = client.config.settings;
 
   // Also good practice to ignore any message that does not start with our prefix,
   // which is set in the configuration file.
