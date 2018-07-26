@@ -1,4 +1,4 @@
-const games = ['Resident Evil 7', 'Crush Crush', 'with Lego!', 'with Sayori', 'with Crayons!', 'Katawa Shoujo', 'Doki Doki Literature Club', 'Friday The 13th The game.'];
+const games = ['Doki Doki Literature Club', 'Katawa Shoujo', 'School days', 'HuniePop'];
 
 module.exports = async client => {
   // Log that the bot is online.
