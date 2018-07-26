@@ -6,29 +6,19 @@ exports.run = (client, message, args) => {
 
   args.shift();
 
-  let reason = null;
+  let reason = (args.length) ? args.join(' ') : client.awaitReply(message, `What reason should we ban ${user.displayName} for?`);
 
-  if (args.length > 0) reason = args.join(' ');
+  if (!reason) return message.reply('Took to long to respon command canceled');
 
-  if (!reason) {
-    message.channel.send('What tag would you like to see? This will await will be cancelled in 30 seconds. It will finish when you provide a message that goes through the filter the first time.')
-    .then(() => {
-      message.channel.awaitMessages(response => response.user.id === message.author.id, {
-        max: 1,
-        time: 30000,
-        errors: ['time'],
-      })
-      .then((collected) => {
-        if (collected.first().content === 'cancel')
-          return message.channel.send('Command Canceled');
+  user.send(`You are being banned for ${reason}`);
 
-        let reason = collected.first().content;
-      })
-      .catch(() => {
-        message.channel.send('Failed to respond in time, ban was canceled');
-      });
-    });
-  }
+  user.ban(reason)
+  .then(() => {
+    message.reply(`${user.displayName} was banned for ${reason}`);
+  })
+  .catch(() => {
+    message.reply(`Error trying to ban ${user.displayName} do I have the perms to?`);
+  })
 }
 
 exports.conf = {
