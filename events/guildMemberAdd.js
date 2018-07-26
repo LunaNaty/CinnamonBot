@@ -34,7 +34,7 @@ module.exports = (client, member) => {
       "color": 12011097,
       "timestamp": "2018-07-25T18:14:20.238Z",
       "image": {
-        "url": "https://cdn.discordapp.com/attachments/471600179662028802/471744950321807370/Discord_Rules_Banner.png"
+        "url": "https://cdn.discordapp.com/attachments/471600179662028802/472064728232099861/ServerHeader.jpg"
       },
       "footer": {
         "text": "Hope you enjoy your stay :3"
