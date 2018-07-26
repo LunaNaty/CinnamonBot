@@ -41,7 +41,7 @@ module.exports = (client, message) => {
     return message.channel.send("This command is unavailable via private message. Please run this command in a guild.");
 
   if (level < client.levelCache[cmd.conf.permLevel]) {
-    if (settings.systemNotice === "true") {
+    if (settings.systemNotice) {
       return message.channel.send(`You do not have permission to use this command.
   Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
   This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);

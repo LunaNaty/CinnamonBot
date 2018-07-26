@@ -5,6 +5,7 @@ const config = {
   devId: process.env.DEVID,
 
   settings: {
+    systemNotice: true,
     prefix: 'L!',
     welcomeEnabled: true,
     welcomeChannel: 'mainhall',

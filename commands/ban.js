@@ -12,8 +12,6 @@ exports.run = async (client, message, args) => {
 
   if (reason === 'cancel') return message.reply('Command canceled');
 
-  user.send(`You are being banned for ${reason}`);
-
   user.ban(reason)
   .then(() => {
     message.reply(`${user.displayName} was banned for ${reason}`);
