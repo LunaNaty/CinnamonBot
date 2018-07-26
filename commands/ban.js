@@ -1,3 +1,4 @@
+const embeds = require('../embeds').banned;
 
 exports.run = async (client, message, args) => {
   const user = message.mentions.members.first();
@@ -12,12 +13,14 @@ exports.run = async (client, message, args) => {
 
   if (reason.toLowerCase() === 'cancel') return message.reply('Command canceled');
 
+  user.send({ embed: embeds.dm(message.author.displayName, reason) })
+
   user.ban(reason)
   .then(() => {
-    message.reply(`${user.displayName} was banned for ${reason}`);
+    message.channel.send({ embed: embeds.confirmation(message.author.displayName, user.displayName, reason) });
   })
   .catch(() => {
-    message.reply(`Error trying to ban ${user.displayName} do I have the perms to?`);
+    message.channel.send( { embed: embeds.error(user.displayName) });
   })
 }
 
