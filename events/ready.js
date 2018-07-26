@@ -1,4 +1,4 @@
-const games = ['Resident Evil 7', 'Crush Crush', 'with Lego!', 'with Sayori', 'with Crayons!', 'Katawa Shoujo', 'Doki Doki Literature Club'];
+const games = ['Resident Evil 7', 'Crush Crush', 'with Lego!', 'with Sayori', 'with Crayons!', 'Katawa Shoujo', 'Doki Doki Literature Club', 'Friday The 13th The game.'];
 
 module.exports = async client => {
   // Log that the bot is online.
@@ -9,5 +9,5 @@ module.exports = async client => {
 
   setInterval(() => {
     client.user.setActivity(games[Math.floor(Math.random() * games.length)], { type: 'PLAYING' });
-  })
+  }, 1500);
 };
