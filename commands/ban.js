@@ -1,12 +1,12 @@
 
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
   const user = message.mentions.members.first();
 
   // remove the mention off the reason of banning
 
   args.shift();
 
-  let reason = (args.length) ? args.join(' ') : client.awaitReply(message, `What reason should we ban ${user.displayName} for?`);
+  let reason = (args.length) ? args.join(' ') : await client.awaitReply(message, `What reason should we ban ${user.displayName} for?`);
 
   if (!reason) return message.reply('Took to long to respon command canceled');
 
