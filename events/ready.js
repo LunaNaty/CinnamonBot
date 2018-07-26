@@ -9,5 +9,5 @@ module.exports = async client => {
 
   setInterval(() => {
     client.user.setActivity(games[Math.floor(Math.random() * games.length)], { type: 'PLAYING' });
-  }, 1500);
+  }, 15000);
 };
