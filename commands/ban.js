@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
 
   if (!reason) return message.reply('Took to long to respon command canceled');
 
-  if (reason === 'cancel') return message.reply('Command canceled');
+  if (reason.toLowerCase() === 'cancel') return message.reply('Command canceled');
 
   user.ban(reason)
   .then(() => {
