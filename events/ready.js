@@ -1,4 +1,4 @@
-const games = ['Doki Doki Literature Club', 'Katawa Shoujo', 'School days', 'HuniePop'];
+const games = ['Doki Doki Literature Club', 'Katawa Shoujo', 'School days', 'HuniePop', 'with Sayori!'];
 
 module.exports = async client => {
   // Log that the bot is online.
