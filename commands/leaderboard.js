@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 exports.run = (client, message, args) => {
   // Get a filtered list (for this guild only), and convert to an array while we're at it.
-  const filtered = Array.from(client.points.values());
+  const filtered = Array.from(client.userInfo.values());
 
   // Sort it to get the top results... well... at the top. Y'know.
   const sorted = filtered.sort((a, b) => a.points < b.points);
