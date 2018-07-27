@@ -4,6 +4,11 @@ const config = {
 
   devId: process.env.DEVID,
 
+  mongo: {
+    dbName: process.env.DBNAME,
+    url: process.env.MONGOURL
+  },
+
   settings: {
     systemNotice: true,
     prefix: 'L!',
