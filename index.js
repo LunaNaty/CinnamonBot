@@ -28,7 +28,7 @@ client.logger = require("./util/logger");
 require("./modules/functions.js")(client);
 
 // Provider to store our points outside the lifecycle of the bpt
-const Provider = require("enmap-sqlite");
+const Provider = require("enmap-level");
 
 client.points = new Enmap({ provider: new Provider({ name: "points", dataDir: './.data' }) });
 
