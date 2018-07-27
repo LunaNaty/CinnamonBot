@@ -17,10 +17,13 @@ module.exports = (client, message) => {
     if(!client.userInfo.has(key)) {
       // The user and guild properties will help us in filters and leaderboards.
       client.userInfo.set(key, {
+        // general information
         user: message.author.id,
         points: 0,
         level: 1,
-        warnings: 0,
+        warnings: [],
+
+        // rpg info
         coins: 0,
         inventory: []
       });

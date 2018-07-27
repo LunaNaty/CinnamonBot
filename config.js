@@ -11,7 +11,7 @@ const config = {
 
   settings: {
     systemNotice: true,
-    prefix: 'L!',
+    prefix: 'C!',
     welcomeEnabled: true,
     welcomeChannel: 'mainhall',
     welcomeMessage: 'Hello {{user}}! Welcome to CinnamonBuns!',
