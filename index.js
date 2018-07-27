@@ -31,8 +31,6 @@ require("./modules/functions.js")(client);
 const Provider = require("enmap-mongo");
 
 client.userInfo = new Enmap({
-  fetchAll: false,
-  
   provider: new Provider({ 
     name: 'users',
     dbName: client.config.mongo.dbName,
