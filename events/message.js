@@ -14,7 +14,7 @@ module.exports = (client, message) => {
     const key = message.author.id;
 
     // Triggers on new users we haven't seen before.
-    if(!client.userInfo.hasProp(key, 'setup')) {
+    if(!client.userInfo.has(key) || !client.userInfo.hasProp(key, 'setup')) {
       // The user and guild properties will help us in filters and leaderboards.
       client.userInfo.set(key, {
         user: message.author.id, points: 0, level: 1, setup: true
