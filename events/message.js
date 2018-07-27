@@ -8,6 +8,35 @@ module.exports = (client, message) => {
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
 
+  // If this is not in a DM, execute the points code.
+  if (message.guild) {
+    // We'll use the key often enough that simplifying it is worth the trouble.
+    const key = message.author.id;
+​
+    // Triggers on new users we haven't seen before.
+    if(!client.points.has(key)) {
+      // The user and guild properties will help us in filters and leaderboards.
+      client.points.set(key, {
+        user: message.author.id, points: 0, level: 1
+      });
+    }
+​
+    // Get only the current points for the user.
+    let currentPoints = client.points.getProp(key, "points");
+​
+    // Increment the points and save them.
+    client.points.setProp(key, "points", ++currentPoints);
+​
+    // Calculate the user's current level
+    const curLevel = Math.floor(0.1 * Math.sqrt(currentPoints));
+​
+    // Act upon level up by sending a message and updating the user's level in enmap.
+    if (client.points.getProp(key, "level") < curLevel) {
+      message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
+      client.points.setProp (key, "level", curLevel);
+    }
+  }
+
   // Grab the settings for this server from Enmap.
   // If there is no guild, get default conf (DMs)
   const settings = client.config.settings;

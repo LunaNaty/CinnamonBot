@@ -13,14 +13,14 @@ exports.run = async (client, message, args) => {
 
   if (reason.toLowerCase() === 'cancel') return message.reply('Command canceled');
 
-  user.send({ embed: embeds.dm(message.author.displayName, reason) })
+  user.send({ embed: embeds.dm(message.author.username, reason) })
 
   user.ban(reason)
   .then(() => {
-    message.channel.send({ embed: embeds.confirmation(message.author.displayName, user.displayName, reason) });
+    message.channel.send({ embed: embeds.confirmation(message.author.username, user.displayName, reason) });
   })
   .catch(() => {
-    message.channel.send( { embed: embeds.error(user.displayName) });
+    message.channel.send({ embed: embeds.error(user.displayName) });
   })
 }
 
