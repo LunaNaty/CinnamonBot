@@ -30,11 +30,15 @@ require("./modules/functions.js")(client);
 // Provider to store our points outside the lifecycle of the bpt
 const Provider = require("enmap-mongo");
 
-client.users = new Enmap({ provider: new Provider({ 
-  name: 'users',
-  dbName: client.config.mongo.dbName,
-  url: client.config.mongo.url
-}) });
+client.userInfo = new Enmap({
+  fetchAll: false,
+  
+  provider: new Provider({ 
+    name: 'users',
+    dbName: client.config.mongo.dbName,
+    url: client.config.mongo.url
+  })
+});
 
 // Aliases and commands are put in collections where they can be read from,
 // catalogued, listed, etc.
