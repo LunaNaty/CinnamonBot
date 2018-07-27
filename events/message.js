@@ -14,15 +14,15 @@ module.exports = (client, message) => {
     const key = message.author.id;
 
     // Triggers on new users we haven't seen before.
-    if(!client.userInfo.has(key)) {
+    if(!client.userInfo.hasProp(key, 'setup')) {
       // The user and guild properties will help us in filters and leaderboards.
       client.userInfo.set(key, {
-        user: message.author.id, points: 0, level: 1
+        user: message.author.id, points: 0, level: 1, setup: true
       });
     }
 
     // Get only the current points for the user.
-    let currentPoints = client.userInfo.getProp(key, "points");
+    let currentPoints = client.userInfo.getProp(key, 'points');
 
     // Increment the points and save them.
     client.userInfo.setProp(key, "points", ++currentPoints);
