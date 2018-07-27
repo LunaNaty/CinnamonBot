@@ -17,6 +17,7 @@
     "express": "^4.16.3",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
-    "enmap-mongo": "^2.0.1"
+    "enmap-mongo": "^2.0.1",
+    "random-id": "^1.0.0"
   }
 }
