@@ -1,0 +1,18 @@
+
+exports.run = (client, message, args) => {
+  message.channel.send(`You currently have ${client.points.getProp(key, "points")}, and are level ${client.points.getProp(key, "level")}!`);
+}
+
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: ['p'],
+  permLevel: "User"
+};
+
+exports.help = {
+  name: "points",
+  category: "Miscelaneous",
+  description: "Shows your points and levels.",
+  usage: "points"
+};
