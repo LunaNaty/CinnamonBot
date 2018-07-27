@@ -6,7 +6,7 @@ exports.run = (client, message, args) => {
 
   // Sort it to get the top results... well... at the top. Y'know.
   const sorted = filtered.sort((a, b) => a.points < b.points);
-  ​
+
   // Slice it, dice it, get the top 10 of it!
   const top10 = sorted.splice(0, 10);
 
