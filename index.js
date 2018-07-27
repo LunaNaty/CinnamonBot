@@ -29,7 +29,7 @@ require("./modules/functions.js")(client);
 
 // Provider to store our points outside the lifecycle of the bpt
 const Provider = require("enmap-sqlite");
-​
+
 client.points = new Enmap({ provider: new Provider({ name: "points" }) });
 
 // Aliases and commands are put in collections where they can be read from,
