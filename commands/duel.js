@@ -257,17 +257,20 @@ const generateAction = (attacker, defender, cat) => {
 
 }
 
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
 const generateMove = (moves) => {
   // Select move, action, object, etc
-  movelist = nested_random(moves)
+  let movelist = nested_random(moves)
 
-  hp_delta = movelist.pop()  // always last
+  let hp_delta = movelist.pop()  // always last
 
   // randomize damage/healing done by -/+ 33%
-  hp_delta = math.floor(((hp_delta * random.randint(66, 133)) / 100))
-  move = movelist.pop(0)  // always first
-  verb = (movelist) ? movelist.pop(0) : null; // Optional
-  obj = (movelist) ? movelist.pop() : null;  // Optional
+  hp_delta = math.floor(((hp_delta * randomInt(66, 133)) / 100))
+  let move = movelist.pop(0)  // always first
+  let verb = (movelist) ? movelist.pop(0) : null; // Optional
+  let obj = (movelist) ? movelist.pop() : null;  // Optional
 
   if (movelist)
     verb += ' ' + movelist.pop(); // Optional but present when obj is
@@ -287,12 +290,14 @@ exports.run = (client, message, args, level) => {
 
   const order = [[p1, p2], [p2, p1]];
 
-  message.channel.send(`${p1} challenges ${p2} to a duel`)
+  message.channel.send(`${p1.member} challenges ${p2.member} to a duel`)
   .then(() => {
     for (let i = 0; i < MAX_ROUNDS; i++) {
       if (p1.hp <= 0 || p2.hp <= 0) break;
 
-      for (const attacker, defender in order) {
+      for (const o in order) {
+        let [attacker, defender] = order[o];
+
         if (p1.hp <= 0 || p2.hp <= 0) break;
 
         let moveMsg;
