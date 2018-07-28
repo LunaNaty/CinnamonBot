@@ -1,4 +1,4 @@
-const randomId = require('random-id');
+const Discord = require('discord.js');
 
 exports.run = (client, message, args) => {
   const userToCheck = message.mentions.users.first();
