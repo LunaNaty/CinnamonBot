@@ -3,7 +3,24 @@ const Discord = require('discord.js');
 exports.run = (client, message, args) => {
   const userToCheck = message.mentions.users.first();
 
-  // if (!userToCheck) 
+  if (userToCheck) {
+    let warnings = client.userInfo.getProp(userToCheck.id, 'warnings');
+
+    const embed = new Discord.RichEmbed()
+    .setTitle(`${userToCheck.username}'s warnings`)
+    .setColor(16090536);
+    
+    let warnings = '';
+    for (let w = 0; w < user.warnings; w++) {
+      let warning = user.warnings[w];
+
+      warnings += `${warning.id} | ${warning.day} | ${warning.reason}\n`
+    }
+
+    embed.setDescription(warnings);
+    
+    message.channel.send({ embed });
+  }
 
   let warnedUsers = client.userInfo.filterArray((user) => user.warnings.length !== 0);
 
