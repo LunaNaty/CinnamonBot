@@ -114,15 +114,15 @@ const VERB_IND_SUB = {
 }
 
 const ATTACK = {
-  "{a} {v} their {o} at {d}!": indicatize(WEAPONS),
-  "{a} {v} their {o} into {d}!": indicatize(MELEE),
-  "{a} {v} their {o} into {d}'s {b}!": indicatize(MELEE),
-  "{a} {v} {o} at {d}!": indicatize(SINGLE_PROJECTILE),
-  "{a} {v} {o} at {d}'s {b}!": indicatize(SINGLE_PROJECTILE),
-  "{a} {v} {o} into {d}'s {b}!": indicatize(SINGLE_PROJECTILE),
+  "{a} {v} their {o} at {d}!": (WEAPONS),
+  "{a} {v} their {o} into {d}!": (MELEE),
+  "{a} {v} their {o} into {d}'s {b}!": (MELEE),
+  "{a} {v} {o} at {d}!": (SINGLE_PROJECTILE),
+  "{a} {v} {o} at {d}'s {b}!": (SINGLE_PROJECTILE),
+  "{a} {v} {o} into {d}'s {b}!": (SINGLE_PROJECTILE),
   "{a} orders {o} to {v} {d}!": FAMILIAR,
   "{a} summons {o} to {v} {d}!": SUMMON,
-  "{a} {v} {d}!": indicatize(MARTIAL),
+  "{a} {v} {d}!": (MARTIAL),
   "{d} is bowled over by {a}'s sudden bull rush!": 6,
   "{a} tickles {d}, causing them to pass out from lack of breath": 2,
   "{a} points at something in the distance, distracting {d} long enough to {v} them!": MARTIAL
@@ -177,7 +177,7 @@ const HEALS = {
 
 const HEAL = {
   "{a} decides to {v} {o} instead of attacking.": HEALS,
-  "{a} calls a timeout and {v} {o}.": indicatize(HEALS),
+  "{a} calls a timeout and {v} {o}.": (HEALS),
   "{a} decides to meditate on their round.": 5
 }
 
@@ -185,8 +185,8 @@ const HEAL = {
 const FUMBLE = {
   "{a} closes in on {d}, but suddenly remembers a funny joke and laughs instead.": 0,
   "{a} moves in to attack {d}, but is disctracted by a shiny.": 0,
-  "{a} {v} their {o} at {d}, but has sweaty hands and loses their grip, hitting themself instead.": indicatize(WEAPONS),
-  "{a} {v} their {o}, but fumbles and drops it on their {b}!": indicatize(WEAPONS)
+  "{a} {v} their {o} at {d}, but has sweaty hands and loses their grip, hitting themself instead.": (WEAPONS),
+  "{a} {v} their {o}, but fumbles and drops it on their {b}!": (WEAPONS)
 }
 
 const BOT = {
