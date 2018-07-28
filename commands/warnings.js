@@ -28,7 +28,7 @@ exports.run = (client, message, args) => {
   .setTitle("Warned users")
   .setColor(16090536);
   
-  for (let u = 0; u < warnedUsers; u++) {
+  for (let u = 0; u < warnedUsers.length; u++) {
     let user = warnedUsers[u];
 
     let warnings = '';
