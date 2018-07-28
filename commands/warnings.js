@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
     .setColor(16090536);
     
     let warnings = '';
-    for (let w = 0; w < userWarnings; w++) {
+    for (let w = 0; w < userWarning.length; w++) {
       let warning = userWarnings[w];
 
       warnings += `${warning.id} | ${warning.day} | ${warning.reason}\n`
@@ -19,7 +19,7 @@ exports.run = (client, message, args) => {
 
     embed.setDescription(warnings);
     
-    message.channel.send({ embed });
+    return message.channel.send({ embed });
   }
 
   let warnedUsers = client.userInfo.filterArray((user) => user.warnings.length !== 0);
@@ -32,7 +32,7 @@ exports.run = (client, message, args) => {
     let user = warnedUsers[u];
 
     let warnings = '';
-    for (let w = 0; w < user.warnings; w++) {
+    for (let w = 0; w < user.warnings.length; w++) {
       let warning = user.warnings[w];
 
       warnings += `${warning.id} | ${warning.day} | ${warning.reason}\n`
