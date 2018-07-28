@@ -4,15 +4,15 @@ exports.run = (client, message, args) => {
   const userToCheck = message.mentions.users.first();
 
   if (userToCheck) {
-    let warnings = client.userInfo.getProp(userToCheck.id, 'warnings');
+    let userWarnings = client.userInfo.getProp(userToCheck.id, 'warnings');
 
     const embed = new Discord.RichEmbed()
     .setTitle(`${userToCheck.username}'s warnings`)
     .setColor(16090536);
     
     let warnings = '';
-    for (let w = 0; w < user.warnings; w++) {
-      let warning = user.warnings[w];
+    for (let w = 0; w < userWarnings; w++) {
+      let warning = userWarnings[w];
 
       warnings += `${warning.id} | ${warning.day} | ${warning.reason}\n`
     }
