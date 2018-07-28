@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
     .setColor(16090536);
     
     let warnings = '';
-    for (let w = 0; w < userWarning.length; w++) {
+    for (let w = 0; w < userWarnings.length; w++) {
       let warning = userWarnings[w];
 
       warnings += `${warning.id} | ${warning.day} | ${warning.reason}\n`

@@ -65,7 +65,6 @@ const init = async () => {
   const cmdFiles = await readdir("./commands/");
   client.logger.log(`Loading a total of ${cmdFiles.length} commands.`);
   cmdFiles.forEach(f => {
-    if (!f.endsWith(".js")) return;
     const response = client.loadCommand(f);
     if (response) console.log(response);
   });
