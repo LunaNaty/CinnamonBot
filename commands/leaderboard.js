@@ -21,7 +21,7 @@ exports.run = (client, message, args) => {
     embed.addField(client.users.get(data.user).tag, `${data.points} points (level ${data.level})`);
   }
   
-  message.channel.send({embed});
+  message.channel.send({ embed });
 }
 
 exports.conf = {
