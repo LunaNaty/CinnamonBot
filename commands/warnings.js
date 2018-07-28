@@ -5,15 +5,14 @@ exports.run = (client, message, args) => {
 
   // if (!userToCheck) 
 
-  let warnedUsers = client.userInfo.filter((user) => user.warnings.length !== 0);
-
-  console.log(warnedUsers)
+  let warnedUsers = client.userInfo.filterArray((user) => user.warnings.length !== 0);
 
   const embed = new Discord.RichEmbed()
   .setTitle("Warned users")
   .setColor(16090536);
   
-  for (user of warnedUsers.length) {
+  for (let u = 0; u < warnedUsers; u++) {
+    let user = warnedUsers[u];
 
     let warnings = '';
     for (let w = 0; w < user.warnings; w++) {
