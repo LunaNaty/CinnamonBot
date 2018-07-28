@@ -7,12 +7,13 @@ exports.run = (client, message, args) => {
 
   let warnedUsers = client.userInfo.filter((user) => user.warnings.length !== 0);
 
+  console.log(warnedUsers)
+
   const embed = new Discord.RichEmbed()
   .setTitle("Warned users")
   .setColor(16090536);
   
-  for (let u = 0; u < warnedUsers.length; u++) {
-    let user = warnedUsers[u];
+  for (user of warnedUsers.length) {
 
     let warnings = '';
     for (let w = 0; w < user.warnings; w++) {
