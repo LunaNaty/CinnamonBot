@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
 
   // if (!userToCheck) 
 
-  let warnedUsers = client.userInfo.filter((user) => user.warnings !== 0);
+  let warnedUsers = client.userInfo.filter((user) => user.warnings.length !== 0);
 
   const embed = new Discord.RichEmbed()
   .setTitle("Warned users")
