@@ -9,7 +9,7 @@ module.exports = (client, member) => {
   if (!settings.welcomeEnabled) return;
 
   // Replace the placeholders in the welcome message with actual data
-  const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member.user.tag);
+  const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member);
 
   const guildEmbed = {
     "title": welcomeMessage,

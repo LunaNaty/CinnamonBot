@@ -7,6 +7,8 @@ function getTotal(weights) {
     }
   }
 
+  let total;
+
   if (total === undefined) {
     ['pop', 'push', 'shift', 'unshift', 'splice'].forEach((key) => {
       weights[key] = wrap(weights, weights[key])
@@ -41,7 +43,7 @@ const select = (obj) => {
     return obj[key]
   })
 
-  return _selectArr(keys, values, options);
+  return _selectArr(keys, values);
 }
 
 module.exports = select

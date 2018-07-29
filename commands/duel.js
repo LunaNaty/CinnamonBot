@@ -250,7 +250,7 @@ const generateAction = (attacker, defender, cat) => {
 
   console.log(cat);
 
-  const { move, target, multiplier } = MOVES[cat];
+  let { move, target, multiplier } = MOVES[cat];
 
   target = (target === TARGET_OTHER) ? defender : attacker;
 
