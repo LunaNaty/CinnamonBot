@@ -16,7 +16,7 @@ module.exports = (client, member) => {
       "text": "Enjoy your stay :3"
     },
     "image": {
-      "url": "https://cdn.discordapp.com/attachments/471600179662028802/471615977101197322/9c0b6c1a89547a4e53964a5e865ad5b3-700.jpg"
+      "url": "https://cdn.discordapp.com/attachments/471600179662028802/473119712134430750/WelcomeMessageImage.jpg"
     }
   };
 
