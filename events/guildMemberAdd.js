@@ -9,7 +9,7 @@ module.exports = (client, member) => {
   if (!settings.welcomeEnabled) return;
 
   // Replace the placeholders in the welcome message with actual data
-  const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member);
+  const welcomeMessage = settings.welcomeMessage.replace("{{user}}", member.user);
 
   const guildEmbed = {
     "title": welcomeMessage,
@@ -29,12 +29,12 @@ module.exports = (client, member) => {
   .then(() => {
 
     const dmEmbed = {
-      "title": "Welcome {{user}}! Welcome to cinnamonBuns!".replace("{{user}}", member.user.tag),
-      "description": "Here's a spare link so if you accidentally leave you can easily join back or if you want to invite a friend! \n\n https://discord.gg/q55yXMe \n\n If you invite a friend you can aquire the Supporter role, this gives you access to the premium self assignable roles!",
+      "title": "Welcome {{user}}! Welcome to cinnamonBuns!".replace("{{user}}", member.user),
+      "description": "Before you begin chatting there's a couple things you could do first to make being in this server the best experience possible!\nPlease read the Rules so you don't accidently break any!\nIf you want a custom colour you can get a number of different colours if you say =rank in Botchannel!\n\nOnce you've done this you're ready to start chatting, if you have any questions please send them to the server owner Natyori#0001\n\nAlso if you accidently leave the server or want to invite a friend then here's a permanent invite link!\n\nhttps://discord.gg/q55yXMe\n\nIf you invite somebody to the server, you can acquire the Supporter role!\nPlease ask a mod/admin to acquire it after you have done this!",
       "color": 12011097,
       "timestamp": "2018-07-25T18:14:20.238Z",
       "image": {
-        "url": "https://cdn.discordapp.com/attachments/471600179662028802/472064728232099861/ServerHeader.jpg"
+        "url": "https://cdn.discordapp.com/attachments/471600179662028802/473115234102411264/ServerWelcome.png"
       },
       "footer": {
         "text": "Hope you enjoy your stay :3"
