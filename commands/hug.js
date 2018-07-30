@@ -45,14 +45,14 @@ exports.run = async (client, message, args) => {
     "color": 12648579,
     "timestamp": new Date().toISOString(),
     "footer": {
-      "text": (hugCount[hugged.id] === 1) ? "firt hug from you :3" : `That's ${hugCount[hugged.id]} hugs now`
+      "text": (hugCount[hugged.id] === 1) ? "first hug from you :3" : `That's ${hugCount[hugged.id]} hugs now`
     },
     "image": {
       "url": huglinks[Math.floor(Math.random() * huglinks.length)]
     }
   };
 
-  channel.send({ embed });
+  message.channel.send({ embed });
 }
 
 exports.conf = {
