@@ -1,33 +1,24 @@
 {
-  "name": "guidebot",
-  "version": "2.3.5",
-  "description": "A boilerplate example bot with command handler and reloadable commands. Updated and Maintained by the Idiot's Guide Community",
+  "name": "cinnamonbot",
+  "version": "1.0.0",
+  "description": "A bot for the cinnamonbuns community",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "engines": {
-    "node": ">=8"
+    "node": "8.4.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/An-Idiots-Guide/guidebot.git"
-  },
-  "author": "Evelyne Lachance <eslachance@gmail.com> (http://evie.codes)",
-  "contributors": [
-    "York (http://anidiots.guide)"
-  ],
+  "author": "KingCosmic <KingCosmicDev@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/An-Idiots-Guide/guidebot/issues"
-  },
-  "homepage": "https://github.com/An-Idiots-Guide/guidebot#readme",
   "dependencies": {
     "chalk": "^2.3.0",
     "discord.js": "^11.3.2",
     "enmap": "^2.0.4",
-    "enmap-level": "^2.0.2",
     "moment": "^2.20.1",
-    "moment-duration-format": "^2.2.0"
+    "moment-duration-format": "^2.2.0",
+    "enmap-mongo": "^2.0.1",
+    "express": "^4.16.3",
+    "random-id": "^1.0.0"
   }
 }

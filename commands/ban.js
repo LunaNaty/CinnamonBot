@@ -11,14 +11,14 @@ exports.run = (client, message, args) => {
       const user = message.mentions.members.first();
       if (!user) return message.reply('I didnt understand. command canceled');
 
-      ban(user);
+      ban(message, user);
     })
   }
 
-  ban(user);
+  ban(message, user);
 }
 
-const ban = (user) => {
+const ban = (message, user) => {
   user.send({ embed: embeds.dm(message.member) })
   .then(() => {
     user.ban()
