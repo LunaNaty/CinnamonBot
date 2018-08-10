@@ -1,26 +1,33 @@
 const embeds = require('../embeds').banned;
 
-exports.run = async (client, message, args) => {
+exports.run = (client, message, args) => {
   const user = message.mentions.members.first();
 
-  // remove the mention off the reason of banning
+  if (!user) {
+    client.awaitReply(message, `Who do you want to ban? reply with \`cancel\` to cancel`)
+    .then((resp) => {
+      if (resp.content.toLowerCase() === 'cancel') return message.reply('Command canceled');
 
-  args.shift();
+      const user = message.mentions.members.first();
+      if (!user) return message.reply('I didnt understand. command canceled');
 
-  let reason = (args.length) ? args.join(' ') : await client.awaitReply(message, `What reason should we ban ${user.displayName} for?`);
+      ban(user);
+    })
+  }
 
-  if (!reason) return message.reply('Took to long to respon command canceled');
+  ban(user);
+}
 
-  if (reason.toLowerCase() === 'cancel') return message.reply('Command canceled');
-
-  user.send({ embed: embeds.dm(message.author.username, reason) })
-
-  user.ban(reason)
+const ban = (user) => {
+  user.send({ embed: embeds.dm(message.member) })
   .then(() => {
-    message.channel.send({ embed: embeds.confirmation(message.author.username, user.displayName, reason) });
-  })
-  .catch(() => {
-    message.channel.send({ embed: embeds.error(user.displayName) });
+    user.ban()
+    .then(() => {
+      message.channel.send({ embed: embeds.confirmation(message.member, user) });
+    })
+    .catch(() => {
+      message.channel.send({ embed: embeds.error(user) });
+    })
   })
 }
 

@@ -1,12 +1,13 @@
-
 module.exports = (client) => {
 
   /*
   PERMISSION LEVEL FUNCTION
+
   This is a very basic permission system for commands which uses "levels"
   "spaces" are intentionally left black so you can add them if you want.
   NEVER GIVE ANYONE BUT OWNER THE LEVEL 10! By default this can run any
   command including the VERY DANGEROUS `eval` and `exec` commands!
+
   */
   client.permlevel = message => {
     let permlvl = 0;
@@ -25,19 +26,42 @@ module.exports = (client) => {
   };
 
   /*
+  GUILD SETTINGS FUNCTION
+
+  This function merges the default settings (from config.defaultSettings) with any
+  guild override you might have for particular guild. If no overrides are present,
+  the default settings are used.
+
+  */
+  client.getGuildSettings = (guild) => {
+    const def = client.config.defaultSettings;
+    if (!guild) return def;
+    const returns = {};
+    const overrides = client.settings.get(guild.id) || {};
+    for (const key in def) {
+      returns[key] = overrides[key] || def[key];
+    }
+    return returns;
+  };
+
+  /*
   SINGLE-LINE AWAITMESSAGE
+
   A simple way to grab a single reply, from the user that initiated
   the command. Useful to get "precisions" on certain things...
+
   USAGE
+
   const response = await client.awaitReply(msg, "Favourite Color?");
   msg.reply(`Oh, I really love ${response} too!`);
+
   */
   client.awaitReply = async (msg, question, limit = 60000) => {
     const filter = m => m.author.id === msg.author.id;
     await msg.channel.send(question);
     try {
       const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ["time"] });
-      return collected.first().content;
+      return collected.first();
     } catch (e) {
       return false;
     }
@@ -46,6 +70,7 @@ module.exports = (client) => {
 
   /*
   MESSAGE CLEAN FUNCTION
+
   "Clean" removes @everyone pings, as well as tokens, and makes code blocks
   escaped so they're shown more easily. As a bonus it resolves promises
   and stringifies objects!

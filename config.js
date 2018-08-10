@@ -1,24 +1,31 @@
-
 const config = {
-  token: process.env.TOKEN,
+  // Bot Owner, level 10 by default. A User ID. Should never be anything else than the bot owner's ID.
+  "devID": process.env.DEVID,
 
-  devId: process.env.DEVID,
+  // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
+  "token": process.env.TOKEN,
 
-  mongo: {
-    dbName: process.env.DBNAME,
-    url: process.env.MONGOURL
+  // settings for where to store the user info and settings for guilds
+  "mongo": {
+    "dbName": process.env.DBNAME,
+    "url": process.env.MONGOURL
   },
 
-  settings: {
-    systemNotice: true,
-    prefix: 'C!',
-    welcomeEnabled: true,
-    welcomeChannel: 'mainhall',
-    welcomeMessage: 'Hello {{user}}! Welcome to CinnamonBuns!',
-    modRole: 'Staff',
-    trialMod: 'Trial Staff',
-    adminRole: 'Co owner',
-    supporterRole: 'Supporter',
+  // Default per-server settings. New guilds have these settings. 
+
+  // DO NOT LEAVE ANY OF THESE BLANK, AS YOU WILL NOT BE ABLE TO UPDATE THEM
+  // VIA COMMANDS IN THE GUILD.
+  
+  "defaultSettings" : {
+    "prefix": "C!",
+    "modLogChannel": "staff-logs",
+    "modRole": "Staff",
+    "adminRole": "Co owner/Vice President",
+    "trialMod": "Trial Staff",
+    "supporterRole": "Supporter",
+    "systemNotice": "true", // This gives a notice when a user tries to run a command that they do not have permission to use.
+    "welcomeChannel": "welcome",
+    "welcomeEnabled": "false"
   },
 
   // PERMISSION LEVEL DEFINITIONS.

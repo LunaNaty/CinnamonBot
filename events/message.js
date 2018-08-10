@@ -1,4 +1,3 @@
-
 // The MESSAGE event runs anytime a message is received
 // Note that due to the binding of client to every event, every event
 // goes `client, other, args` when this function is run.
@@ -47,9 +46,7 @@ module.exports = (client, message) => {
 
   // Grab the settings for this server from Enmap.
   // If there is no guild, get default conf (DMs)
-  const settings = client.config.settings;
-
-  message.settings = client.config.settings;
+  const settings = message.settings = client.getGuildSettings(message.guild);
 
   // Also good practice to ignore any message that does not start with our prefix,
   // which is set in the configuration file.
@@ -78,7 +75,7 @@ module.exports = (client, message) => {
     return message.channel.send("This command is unavailable via private message. Please run this command in a guild.");
 
   if (level < client.levelCache[cmd.conf.permLevel]) {
-    if (settings.systemNotice) {
+    if (settings.systemNotice === "true") {
       return message.channel.send(`You do not have permission to use this command.
   Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
   This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);

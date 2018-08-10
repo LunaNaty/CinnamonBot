@@ -9,6 +9,7 @@ const Discord = require("discord.js");
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
+const Provider = require("enmap-mongo");
 
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`,
@@ -21,15 +22,21 @@ client.config = require("./config.js");
 // client.config.prefix contains the message prefix
 
 // Require our logger
-client.logger = require("./util/logger");
+client.logger = require("./util/Logger");
 
 // Let's start by getting some useful functions that we'll use throughout
 // the bot, like logs and elevation features.
 require("./modules/functions.js")(client);
 
-// Provider to store our points outside the lifecycle of the bpt
-const Provider = require("enmap-mongo");
+// Aliases and commands are put in collections where they can be read from,
+// catalogued, listed, etc.
+client.commands = new Enmap();
+client.aliases = new Enmap();
 
+// Now we integrate the use of Evie's awesome Enhanced Map module, which
+// essentially saves a collection to disk. This is great for per-server configs,
+// and makes things extremely easy for this purpose.
+// Provider to store our points outside the lifecycle of the bpt
 client.userInfo = new Enmap({
   provider: new Provider({ 
     name: 'users',
@@ -38,10 +45,13 @@ client.userInfo = new Enmap({
   })
 });
 
-// Aliases and commands are put in collections where they can be read from,
-// catalogued, listed, etc.
-client.commands = new Enmap();
-client.aliases = new Enmap();
+client.settings = new Enmap({
+  provider: new Provider({
+    name: 'settings',
+    dbName: client.config.mongo.dbName,
+    url: client.config.mongo.url
+  })
+})
 
 // We're doing real fancy node 8 async/await stuff here, and to do that
 // we need to wrap stuff in an anonymous function. It's annoying but it works.
@@ -60,11 +70,15 @@ setInterval(() => {
 
 const init = async () => {
 
+  await client.settings.defer;
+  await client.userInfo.defer;
+
   // Here we load **commands** into memory, as a collection, so they're accessible
   // here and everywhere else.
   const cmdFiles = await readdir("./commands/");
   client.logger.log(`Loading a total of ${cmdFiles.length} commands.`);
   cmdFiles.forEach(f => {
+    if (!f.endsWith(".js")) return;
     const response = client.loadCommand(f);
     if (response) console.log(response);
   });

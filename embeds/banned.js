@@ -1,9 +1,12 @@
 
 module.exports = {
-  dm: (user, reason) => {
+  whichUser: () => {
+
+  },
+
+  dm: (user) => {
     return {
-      "title": `You were banned by ${user}`,
-      "description": reason,
+      "title": `You were banned by ${user.displayName}`,
       "color": 16264736,
       "timestamp": new Date().toISOString(),
       "footer": {
@@ -13,10 +16,9 @@ module.exports = {
     }
   },
 
-  confirmation: (user, banned, reason) => {
+  confirmation: (user, banned) => {
     return {
-      "title": `${user} banned ${banned}`,
-      "description": reason,
+      "title": `${user.displayName} banned ${banned.displayName}`,
       "color": 65296,
       "timestamp": new Date().toISOString(),
       "footer": {
@@ -30,10 +32,10 @@ module.exports = {
 
   error: (banned) => {
     return {
-      "title": `Error banning ${banned}`,
-      "description": "The Traitor shall live by discords word",
+      "title": `Error banning ${banned.displayName}`,
+      "description": "The Traitor shall live by the word of discord",
       "color": 16264736,
-      "timestamp": "2018-07-26T20:37:22.974Z",
+      "timestamp": new Date().toISOString(),
       "footer": {
         "text": "oof a error boi's"
       }

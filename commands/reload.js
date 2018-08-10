@@ -1,4 +1,3 @@
-
 exports.run = async (client, message, args, level) => {// eslint-disable-line no-unused-vars
   if (!args || args.length < 1) return message.reply("Must provide a command to reload. Derp.");
 

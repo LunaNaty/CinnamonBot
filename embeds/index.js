@@ -1,4 +1,5 @@
 
 module.exports = {
-  banned: require('./banned.js')
+  welcome: require('./welcome'),
+  banned: require('./banned')
 }
