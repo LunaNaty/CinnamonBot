@@ -25,7 +25,8 @@ const config = {
     "supporterRole": "Supporter",
     "systemNotice": "true", // This gives a notice when a user tries to run a command that they do not have permission to use.
     "welcomeChannel": "mainhall",
-    "welcomeEnabled": "true"
+    "welcomeEnabled": "true",
+    "rulesacceptChannel": "rules-accept"
   },
 
   // PERMISSION LEVEL DEFINITIONS.
