@@ -38,7 +38,9 @@ exports.run = (client, message, args) => {
       warnings += `${warning.id} | ${warning.day} | ${warning.reason}\n`
     }
 
-    embed.addField(client.users.get(user.user).tag || user.user, warnings);
+    let tag = (client.users.get(user.user)) ? client.users.get(user.user).tag : user.user;
+
+    embed.addField(tag, warnings);
   }
   
   message.channel.send({ embed });

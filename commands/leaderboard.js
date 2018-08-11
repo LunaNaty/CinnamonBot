@@ -18,7 +18,9 @@ exports.run = (client, message, args) => {
   .setColor(0x00AE86);
   
   for (const data of top10) {
-    embed.addField(client.users.get(data.user).tag, `${data.points} points (level ${data.level})`);
+    let tag = (client.users.get(user.user)) ? client.users.get(user.user).tag : user.user;
+
+    embed.addField(tag, `${data.points} points (level ${data.level})`);
   }
   
   message.channel.send({ embed });

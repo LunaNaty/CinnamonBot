@@ -13,9 +13,9 @@ exports.run = (client, message, args) => {
 
       ban(message, user);
     })
+  } else {
+    ban(message, user);
   }
-
-  ban(message, user);
 }
 
 const ban = (message, user) => {

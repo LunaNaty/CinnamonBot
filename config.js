@@ -24,8 +24,8 @@ const config = {
     "trialMod": "Trial Staff",
     "supporterRole": "Supporter",
     "systemNotice": "true", // This gives a notice when a user tries to run a command that they do not have permission to use.
-    "welcomeChannel": "welcome",
-    "welcomeEnabled": "false"
+    "welcomeChannel": "mainhall",
+    "welcomeEnabled": "true"
   },
 
   // PERMISSION LEVEL DEFINITIONS.
@@ -64,7 +64,7 @@ const config = {
       name: "Bot Dev", 
       // Simple check, if the guild owner id matches the message author's ID, then it will return true.
       // Otherwise it will return false.
-      check: (message) => message.author.id === config.devId
+      check: (message) => message.author.id === config.devID
     },
 
     {
