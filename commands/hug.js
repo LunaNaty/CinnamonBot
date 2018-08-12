@@ -28,11 +28,15 @@ const huglinks = [
 ];
 
 exports.run = async (client, message, args) => {
-  const hugged = message.mentions.members.first() || await client.awaitReply(message, 'who do you want to hug? relpy `cancel` to cancel the command.', 10000);
+  let hugged = message.mentions.members.first() || await client.awaitReply(message, 'who do you want to hug? relpy `cancel` to cancel the command.', 10000);
 
-  if (!hugged) message.reply('command canceled');
+  if (hugged.content && hugged.content.toLowerCase() === 'cancel') return message.reply('command canceled');
 
   const hugger = message.member;
+  
+  hugged = hugged.mentions.members.first();
+  
+  if (!hugged) return message.reply('didnt tag a user command canceled');
 
   const hugCount = client.userInfo.getProp(hugger.id, 'hugs') || {};
 

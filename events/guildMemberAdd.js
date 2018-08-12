@@ -11,10 +11,10 @@ module.exports = (client, member) => {
 
   const acceptChannel = member.guild.channels.find("name", settings.rulesacceptChannel)
 
-  channel.send(`Hello ${member} do you accept the rules? respond with \`accept\` if you do (you have 15 minutes to respond)`)
+  acceptChannel.send(`Hello ${member} do you accept the rules? respond with \`accept\` if you do (you have 15 minutes to respond)`)
   .then(() => {
-    channel.awaitMessages((m) => m.content.toLowerCase() === 'accept' && m.author.id === member.user.id, {
-      max: 1, time: limit, errors: ["time"]
+    acceptChannel.awaitMessages((m) => m.content.toLowerCase() === 'accept' && m.author.id === member.user.id, {
+      max: 1, time: 900000, errors: ["time"]
     })
     .then((collected) => {
       const resp = collected.first();

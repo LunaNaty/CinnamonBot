@@ -12,11 +12,15 @@ const kisslinks = [
 ];
 
 exports.run = async (client, message, args) => {
-  const kissed = message.mentions.members.first() || await client.awaitReply(message, 'who do you want to kiss? relpy `cancel` to cancel the command.', 10000);
+  let kissed = message.mentions.members.first() || await client.awaitReply(message, 'who do you want to kiss? relpy `cancel` to cancel the command.', 10000);
 
-  if (!kissed) message.reply('command canceled');
+  if (kissed.content && kissed.content.toLowerCase() === 'cancel') return message.reply('command canceled');
 
-  const kisser = message.member;
+  const kisser = message.members;
+  
+  kissed = kissed.mentions.members.first();
+  
+  if (!kissed) return message.reply('didnt tag a user command canceled');
 
   const kissCount = client.userInfo.getProp(kisser.id, 'kisses') || {};
 
