@@ -27,15 +27,31 @@ const huglinks = [
   'https://cdn.discordapp.com/attachments/471600179662028802/473165968198205449/tenor.gif'
 ];
 
-exports.run = async (client, message, args) => {
-  const hugged = message.mentions.members.first() || await client.awaitReply(message, 'who do you want to hug? relpy `cancel` to cancel the command.', 10000);
-
-  if (!hugged) message.reply('command canceled');
-
+exports.run = (client, message, args) => {
+  const hugged = message.mentions.members.first();
   const hugger = message.member;
 
   const hugCount = client.userInfo.getProp(hugger.id, 'hugs') || {};
+  
+  if (!hugged) {
+    client.awaitReply(message, 'who do you want to hug? relpy `cancel` to cancel the command.', 10000)
+    .then((resp) => {
+      if (resp.content.toLowerCase() === 'cancel') return message.reply('command canceled');
+      
+      const huggie = resp.mentions.members.first();
+      if (!huggie) return message.reply('failed to understand, command canceled');
+      hug(client, hugger, huggie, hugCount);
+    })
+    .catch(() => {
+      return message.reply('ran out of time command canceled');
+    })
+  } else {
+    hug(client, hugger, hugged, hugCount);
+  }
 
+}
+
+const hug = (client, hugger, hugged, hugCount) => {
   (hugCount[hugged.id]) ? hugCount[hugged.id]++ : hugCount[hugged.id] = 1;
 
   client.userInfo.setProp(hugger.id, 'hugs', hugCount);
