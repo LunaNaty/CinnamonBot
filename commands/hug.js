@@ -40,18 +40,18 @@ exports.run = (client, message, args) => {
       
       const huggie = resp.mentions.members.first();
       if (!huggie) return message.reply('failed to understand, command canceled');
-      hug(client, hugger, huggie, hugCount);
+      hug(client, hugger, huggie, hugCount, message);
     })
     .catch(() => {
       return message.reply('ran out of time command canceled');
     })
   } else {
-    hug(client, hugger, hugged, hugCount);
+    hug(client, hugger, hugged, hugCount, message);
   }
 
 }
 
-const hug = (client, hugger, hugged, hugCount) => {
+const hug = (client, hugger, hugged, hugCount, message) => {
   (hugCount[hugged.id]) ? hugCount[hugged.id]++ : hugCount[hugged.id] = 1;
 
   client.userInfo.setProp(hugger.id, 'hugs', hugCount);

@@ -11,15 +11,30 @@ const kisslinks = [
   'https://cdn.discordapp.com/attachments/471600179662028802/473246702367801345/tumblr_nynnjpPufu1syeyvqo3_500.gif'
 ];
 
-exports.run = async (client, message, args) => {
-  const kissed = message.mentions.members.first() || await client.awaitReply(message, 'who do you want to kiss? relpy `cancel` to cancel the command.', 10000);
-
-  if (!kissed) message.reply('command canceled');
-
+exports.run = (client, message, args) => {
+  const kissed = message.mentions.members.first();
   const kisser = message.member;
 
   const kissCount = client.userInfo.getProp(kisser.id, 'kisses') || {};
 
+  if (!kissed) {
+    client.awaitReply(message, 'who do you want to kiss? relpy `cancel` to cancel the command.', 10000)
+    .then((resp) => {
+      if (resp.content.toLowerCase() === 'cancel') return message.reply('command canceled');
+      
+      const kissie = resp.mentions.members.first();
+      if (!kissie) return message.reply('failed to understand, command canceled');
+      kiss(client, kisser, kissed, kissCount, message);
+    })
+    .catch(() => {
+      message.reply('command canceled');
+    })
+  } else {
+    kiss(client, kisser, kissed, kissCount, message);
+  }  
+}
+
+const kiss = (client, kisser, kissed, kissCount, message) => {
   (kissCount[kissed.id]) ? kissCount[kissed.id]++ : kissCount[kissed.id] = 1;
 
   client.userInfo.setProp(kisser.id, 'kisses', kissCount);
