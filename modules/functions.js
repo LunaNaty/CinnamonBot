@@ -136,6 +136,14 @@ module.exports = (client) => {
     return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   };    
   
+  String.prototype.format = function() {
+    let a = this;
+    for (let k in arguments) {
+      a = a.replace("{" + k + "}", arguments[k])
+    }
+    return a
+  }
+  
   // <Array>.random() returns a single random element from an array
   // [1, 2, 3, 4, 5].random() can return 1, 2, 3, 4 or 5.
   Array.prototype.random = function() {
