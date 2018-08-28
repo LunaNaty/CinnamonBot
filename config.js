@@ -71,7 +71,7 @@ const config = {
     {
       level: 4,
       // This is the name of the role.
-      name: "Trial Mod",
+      name: "TrialMod",
       // The following lines check the guild the message came from for the roles.
       // Then it checks if the member that authored the message has the role.
       // If they do return true, which will allow them to execute the command in question.
