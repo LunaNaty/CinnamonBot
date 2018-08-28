@@ -58,11 +58,9 @@ const config = {
         }
       }
     },
-
-    // This is the server owner.
     {
       level: 3,
-      name: "Bot Dev", 
+      name: "Trial Mod", 
       // Simple check, if the guild owner id matches the message author's ID, then it will return true.
       // Otherwise it will return false.
       check: (message) => message.author.id === config.devID
@@ -71,7 +69,7 @@ const config = {
     {
       level: 4,
       // This is the name of the role.
-      name: "Trial Mod",
+      name: "Bot Dev",
       // The following lines check the guild the message came from for the roles.
       // Then it checks if the member that authored the message has the role.
       // If they do return true, which will allow them to execute the command in question.
