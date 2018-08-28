@@ -62,21 +62,10 @@ const config = {
     // This is the server owner.
     {
       level: 3,
-      name: "Bot Dev", 
+      name: "TrialMod", 
       // Simple check, if the guild owner id matches the message author's ID, then it will return true.
       // Otherwise it will return false.
-      check: (message) => message.author.id === config.devID
-    },
-
-    {
-      level: 4,
-      // This is the name of the role.
-      name: "Trial Mod",
-      // The following lines check the guild the message came from for the roles.
-      // Then it checks if the member that authored the message has the role.
-      // If they do return true, which will allow them to execute the command in question.
-      // If they don't then return false, which will prevent them from executing the command.
-      check: (message) => {
+     check: (message) => {
         try {
           const modRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.trialMod.toLowerCase());
           if (modRole && message.member.roles.has(modRole.id)) return true;
@@ -84,6 +73,17 @@ const config = {
           return false;
         }
       }
+    },
+
+    {
+      level: 4,
+      // This is the name of the role.
+      name: "Bot Dev",
+      // The following lines check the guild the message came from for the roles.
+      // Then it checks if the member that authored the message has the role.
+      // If they do return true, which will allow them to execute the command in question.
+      // If they don't then return false, which will prevent them from executing the command.
+     check: (message) => message.author.id === config.devID
     },
 
     // This is your permission level, the staff levels should always be above the rest of the roles.
