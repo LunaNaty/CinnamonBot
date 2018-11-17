@@ -19,12 +19,12 @@ const config = {
   "defaultSettings" : {
     "prefix": "C!",
     "modLogChannel": "staff-logs",
-    "modRole": "Staff",
-    "adminRole": "Co owner/Vice President",
+    "modRole": "Café Staff",
+    "adminRole": "Café Manager/Admin",
     "trialMod": "Trial Staff",
     "supporterRole": "Supporter",
     "systemNotice": "true", // This gives a notice when a user tries to run a command that they do not have permission to use.
-    "welcomeChannel": "mainhall",
+    "welcomeChannel": "welcome",
     "welcomeEnabled": "true",
     "rulesacceptChannel": "rules-accept"
   },
